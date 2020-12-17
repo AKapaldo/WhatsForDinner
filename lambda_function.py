@@ -57,9 +57,9 @@ class PickThreeIntentHandler(AbstractRequestHandler):
             num = random.randint(0,6)
             food = foodchoices[num]
             
-        api_key = 'AIzaSyBf9uSetzj8DxZQ9xrL1vw7QOHCfKzogq8'
+        api_key = ''
         gmaps = googlemaps.Client(key=api_key)
-        lat = (39.632263, -80.033758)
+        lat = (, )
         result = gmaps.places(query=food, location=lat, type="restaurant")
         open = []
 
@@ -106,9 +106,9 @@ class PickTwoIntentHandler(AbstractRequestHandler):
             num = random.randint(0,6)
             food = foodchoices[num]
             
-        api_key = 'AIzaSyBf9uSetzj8DxZQ9xrL1vw7QOHCfKzogq8'
+        api_key = ''
         gmaps = googlemaps.Client(key=api_key)
-        lat = (39.632263, -80.033758)
+        lat = (, )
         result = gmaps.places(query=food, location=lat, type="restaurant")
         open = []
 
