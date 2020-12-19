@@ -20,6 +20,10 @@ from ask_sdk_model import Response
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+api_key = '' #Your Google API Key goes here
+favorites = [] #Fill this list with your favorites
+foodchoices = ["Italian", "Mexican", "Burgers", "Fine Dining", "Chinese", "Japanese", "Pizza"] #Add or remove restaurant types here
+lat = (,) #Put your latitude and longitutde here
 
 
 class LaunchRequestHandler(AbstractRequestHandler):
@@ -53,13 +57,11 @@ class PickThreeIntentHandler(AbstractRequestHandler):
             slots = handler_input.request_envelope.request.intent.slots
             food = slots['FoodType'].value
         else:
-            foodchoices = ["Italian", "Mexican", "Burgers", "Fine Dining", "Chinese", "Japanese", "Pizza"]
+            
             num = random.randint(0,6)
             food = foodchoices[num]
             
-        api_key = ''
         gmaps = googlemaps.Client(key=api_key)
-        lat = (, )
         result = gmaps.places(query=food, location=lat, type="restaurant")
         open = []
 
@@ -102,13 +104,10 @@ class PickTwoIntentHandler(AbstractRequestHandler):
             slots = handler_input.request_envelope.request.intent.slots
             food = slots['FoodType'].value
         else:
-            foodchoices = ["Italian", "Mexican", "Burgers", "Fine Dining", "Chinese", "Japanese", "Pizza"]
             num = random.randint(0,6)
             food = foodchoices[num]
             
-        api_key = ''
         gmaps = googlemaps.Client(key=api_key)
-        lat = (, )
         result = gmaps.places(query=food, location=lat, type="restaurant")
         open = []
 
@@ -136,28 +135,61 @@ class PickTwoIntentHandler(AbstractRequestHandler):
                 .response
         )
 
-class FavsIntentHandler(AbstractRequestHandler):
-    """Handler for Favs Intent."""
+class OneFavIntentHandler(AbstractRequestHandler):
+    """Handler for OneFav Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("Favs")(handler_input)
+        return ask_utils.is_intent_name("OneFav")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        if handler_input.request_envelope.request.intent.slots['number'].value:
-            slots = handler_input.request_envelope.request.intent.slots
-            number = int(slots['number'].value)
-        else:
-            number = 3
-            
-        favorites = ['Chick Fil A', 'Mario\'s', 'Black Bear', 'Los Mariachis', 'Sonic', 'Firehouse Subs', 'Papa Johns']
-        food = ""
-        for i in range(number):
-            food += "{};".format(random.choice(favorites))
-        count = food.count(";") - 2
-        food = food.replace(';', ', ', count).replace(';', ' or ')
-        food = food.rstrip(' or ')
+        food = "{}".format(random.choice(favorites))
         speak_output = "How about {}?".format(food)
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class TwoFavIntentHandler(AbstractRequestHandler):
+    """Handler for TwoFav Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("TwoFav")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        food1 = "{}".format(random.choice(favorites))
+        food2 = "{}".format(random.choice(favorites))
+        while food2 == food1:
+            food2 = "{}".format(random.choice(favorites))
+        speak_output = "How about {} or {}?".format(food1, food2)
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class ThreeFavIntentHandler(AbstractRequestHandler):
+    """Handler for ThreeFav Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("ThreeFav")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        food1 = "{}".format(random.choice(favorites))
+        food2 = "{}".format(random.choice(favorites))
+        while food2 == food1:
+            food2 = "{}".format(random.choice(favorites))
+        food3 = "{}".format(random.choice(favorites))
+        while food3 == food2:
+            food3 = "{}".format(random.choice(favorites))
+        speak_output = "How about {}, {}, or {}?".format(food1, food2, food3)
 
         return (
             handler_input.response_builder
@@ -275,7 +307,9 @@ sb.skill_id = "amzn1.ask.skill.ea567276-e1e5-4f4f-9544-adbec87dcc2d"
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(PickThreeIntentHandler())
 sb.add_request_handler(PickTwoIntentHandler())
-sb.add_request_handler(FavsIntentHandler())
+sb.add_request_handler(OneFavIntentHandler())
+sb.add_request_handler(TwoFavIntentHandler())
+sb.add_request_handler(ThreeFavIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
