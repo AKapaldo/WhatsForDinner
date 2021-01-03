@@ -20,10 +20,11 @@ from ask_sdk_model import Response
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-api_key = '' #Your Google API Key goes here
-favorites = [] #Fill this list with your favorites
-foodchoices = ["Italian", "Mexican", "Burgers", "Fine Dining", "Chinese", "Japanese", "Pizza"] #Add or remove restaurant types here
-lat = (,) #Put your latitude and longitutde here
+api_key = '' #Your API key goes here
+favorites = [] #Your favorite restaurants go here
+foodchoices = ["Italian", "Mexican", "Burgers", "Fine Dining", "Chinese", "Japanese", "Pizza"]
+lat = (,) #Your location latitude and longitutde here
+rad = '16000'
 
 
 class LaunchRequestHandler(AbstractRequestHandler):
@@ -62,7 +63,7 @@ class PickThreeIntentHandler(AbstractRequestHandler):
             food = foodchoices[num]
             
         gmaps = googlemaps.Client(key=api_key)
-        result = gmaps.places(query=food, location=lat, type="restaurant")
+        result = gmaps.places(query=food, location=lat, type='restaurant', radius=rad)
         open = []
 
         for store in result['results']:
@@ -79,7 +80,7 @@ class PickThreeIntentHandler(AbstractRequestHandler):
         while choice1 == choice2:
             choice2 = random.randint(0, top)
         choice3 = random.randint(0, top)
-        while choice3 == choice2:
+        while choice3 == choice2 or choice3 == choice1:
             choice3 = random.randint(0, top)
         
         speak_output = "How about {}, {}, or {}?".format(open[choice1], open[choice2], open[choice3])
@@ -108,7 +109,7 @@ class PickTwoIntentHandler(AbstractRequestHandler):
             food = foodchoices[num]
             
         gmaps = googlemaps.Client(key=api_key)
-        result = gmaps.places(query=food, location=lat, type="restaurant")
+        result = gmaps.places(query=food, location=lat, type='restaurant', radius=rad)
         open = []
 
         for store in result['results']:
@@ -187,7 +188,7 @@ class ThreeFavIntentHandler(AbstractRequestHandler):
         while food2 == food1:
             food2 = "{}".format(random.choice(favorites))
         food3 = "{}".format(random.choice(favorites))
-        while food3 == food2:
+        while food3 == food2 or food3 == food1:
             food3 = "{}".format(random.choice(favorites))
         speak_output = "How about {}, {}, or {}?".format(food1, food2, food3)
 
