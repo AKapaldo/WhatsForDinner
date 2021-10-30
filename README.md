@@ -104,7 +104,7 @@ You will need to create a Google Cloud account to get an API key and you will al
 
 ### Prerequisites
 
-Some tools require Python. To install:
+You will need to create a couple of accounts and create an API via Google Cloud:
 * Create a <a href="https://console.cloud.google.com/">Google Cloud account</a> and under "APIs and Services", click on "Credentials", and then "Create Credentials". You will want to restrict your key and use the below APIs.
     * Places API
     * Geocoding API
