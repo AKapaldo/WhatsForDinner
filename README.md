@@ -79,9 +79,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<!--->
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
---->
+
 What's for Dinner is an Alexa skill that can be run in AWS Lambda to accept requests via your personal Amazon account. To run the skill you will need a Google API account and an Amazon Alexa Developer account.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
