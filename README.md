@@ -33,7 +33,7 @@
     <img src="images/WhatsForDinner.png" alt="Logo" height="256px" width="256px">
   </a>
 
-<h3 align="center">Cyber Tools</h3>
+<h3 align="center">What's for Dinner</h3>
 
   <p align="center">
     What's for dinner is an Alexa skill designed to help choose a randomly choose a place to eat dinner.
