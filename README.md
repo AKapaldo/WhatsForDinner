@@ -128,7 +128,7 @@ You will need to create a couple of accounts and create an API via Google Cloud:
     * <img src="/images/lambdadinner.png">
 4. You will need to update lines 19 to 23 on the lambda.py function.
     * <img src="/images/lines.png">
-    * Line 19 is your Google API key from above (DO NOT SHARE THIS KEY WITH ANYONE!)
+    * Line 19 is your Google API key from above (DO NOT SHARE THIS KEY WITH ANYONE!).
     * Line 20 is your favorite places. e.g. ['Chick Fil A', 'McDonald\'s', 'Subway', 'Firehouse Subs', 'Papa Johns'] 
     * Line 21 is your favorite types. e.g. ["Italian", "Mexican", "Burgers", "Fine Dining", "Chinese", "Japanese", "Pizza"]
     * Line 22 is your Latitude and Longitude. e.g. (40.730610, -73.935242)
@@ -148,7 +148,7 @@ You will need to create a couple of accounts and create an API via Google Cloud:
 ## Usage
 
 Once you have everything in place, you can ask your Alexa device to use the skill based on what you called in the developer console and how you configured the intents. For example, in mine we can use:
-```sh
+```
 Alexa, ask What`s for Dinner to pick two restaurants from my favorites.
 ```
 
