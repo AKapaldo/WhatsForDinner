@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AKapaldo/WhatsForDinner">
-    <img src="images/WhatsForDinner.png" alt="Logo" height="512px" width="512px">
+    <img src="images/WhatsForDinner.png" alt="Logo" height="256px" width="256px">
   </a>
 
 <h3 align="center">Cyber Tools</h3>
@@ -127,9 +127,9 @@ Some tools require Python. To install:
     * Geocoding API
     * Geolocation API
 3. In your <a href="https://developer.amazon.com/en-US/alexa">Amazon Alexa Developer account</a>, put the files you cloned above under Lambda in the "Code" section of your skill.
-    * <img src="/images/lambdadinner.png>
+    * <img src="/images/lambdadinner.png">
 4. You will need to update lines 19 to 23 on the lambda.py function.
-    * <img src="/images/lines.png>
+    * <img src="/images/lines.png">
     * Line 19 is your Google API key from above (DO NOT SHARE THIS KEY WITH ANYONE!)
     * Line 20 is your favorite places. e.g. ['Chick Fil A', 'McDonald\'s', 'Subway', 'Firehouse Subs', 'Papa Johns'] 
     * Line 21 is your favorite types. e.g. ["Italian", "Mexican", "Burgers", "Fine Dining", "Chinese", "Japanese", "Pizza"]
