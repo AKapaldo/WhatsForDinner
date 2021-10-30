@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AKapaldo/WhatsForDinner">
-    <img src="images/WhatsForDinner.png" alt="Logo">
+    <img src="images/WhatsForDinner.png" alt="Logo" height="512px" width="512px">
   </a>
 
 <h3 align="center">Cyber Tools</h3>
